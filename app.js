@@ -40,9 +40,15 @@ let rightImgIndex;
 
 function renderimg()
 {
+    let imgGeneration=[];
+    for (let i=0;i<3;i++){
     leftImgIndex=generateImg();
+    imgGeneration[0]=leftImgIndex;
     midImgIndex=generateImg();
+    imgGeneration[1]=midImgIndex;
     rightImgIndex=generateImg();
+    imgGeneration[2]=rightImgIndex;
+    }
 while(leftImgIndex === midImgIndex)
     {
     leftImgIndex = generateImg();
@@ -64,7 +70,10 @@ RimgEL.setAttribute('src',busmall[rightImgIndex].imagePath);
 RimgEL.setAttribute('title',busmall[rightImgIndex].imagePath);
 busmall[rightImgIndex].shownTimes++;
 attemptsEL.textContent= attempts;
+
+
 }
+
 renderimg();
 
 LimgEL.addEventListener('click',Clicks);
@@ -100,9 +109,8 @@ LimgEL.removeEventListener('click',Clicks);
 }}
 function chartRender() {
 var ctx = document.getElementById('myChart').getContext('2d');
-console.log(views);
-console.log(Votes);
-console.log(productNameArray);
+
+console.log(busmall[0]);
 var myChart = new Chart(ctx, {
     type: 'bar',
     data: {
@@ -150,8 +158,6 @@ let liEL;
         liEL.textContent=(`${busmall[i].productName} had ${busmall[i].clicks} votes, and was seen ${busmall[i].shownTimes} times.`);
         Votes.push(busmall[i].clicks);
         views.push(busmall[i].shownTimes);
-        // console.log(views);
-        // console.log(Votes);
     }
     chartRender(); 
 }

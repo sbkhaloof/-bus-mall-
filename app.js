@@ -37,18 +37,14 @@ let RimgEL=document.getElementById('right_img');
 let leftImgIndex;
 let midImgIndex;
 let rightImgIndex;
-
+let part=[];
 function renderimg()
 {
-    let imgGeneration=[];
-    for (let i=0;i<3;i++){
-    leftImgIndex=generateImg();
-    imgGeneration[0]=leftImgIndex;
-    midImgIndex=generateImg();
-    imgGeneration[1]=midImgIndex;
-    rightImgIndex=generateImg();
-    imgGeneration[2]=rightImgIndex;
-    }
+   leftImgIndex=generateImg();
+   midImgIndex=generateImg();
+  rightImgIndex=generateImg();
+    
+  
 while(leftImgIndex === midImgIndex)
     {
     leftImgIndex = generateImg();
@@ -57,7 +53,8 @@ while(leftImgIndex === midImgIndex)
     {
         midImgIndex =generateImg();
     }
-
+while(rightImgIndex===leftImgIndex)
+{rightImgIndex=generateImg();}
 LimgEL.setAttribute('src',busmall[leftImgIndex].imagePath);
 LimgEL.setAttribute('title',busmall[leftImgIndex].imagePath);
 busmall[leftImgIndex].shownTimes++;
@@ -70,7 +67,13 @@ RimgEL.setAttribute('src',busmall[rightImgIndex].imagePath);
 RimgEL.setAttribute('title',busmall[rightImgIndex].imagePath);
 busmall[rightImgIndex].shownTimes++;
 attemptsEL.textContent= attempts;
-
+part.push(LimgEL,MimgEL,RimgEL);
+while(part.includes(leftImgIndex))
+{leftImgIndex=generateImg();}
+while(part.includes(midImgIndex))
+{midImgIndex=generateImg();}
+// while(part.includes(rightImgIndex))
+{rightImgIndex=generateImg();}
 
 }
 
@@ -107,10 +110,12 @@ LimgEL.removeEventListener('click',Clicks);
      
 
 }}
+
+
+
+
 function chartRender() {
 var ctx = document.getElementById('myChart').getContext('2d');
-
-console.log(busmall[0]);
 var myChart = new Chart(ctx, {
     type: 'bar',
     data: {

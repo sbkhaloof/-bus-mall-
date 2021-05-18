@@ -3,3 +3,9 @@ h1{background-color: blueviolet;height: 50px;line-height:50px ;color: white;font
 #imageContainer img{width: 30%;height: 300px;float: left;padding: 5px;padding-left: 10px;}
 p{padding-top: 20px;font-size: medium;font-family:fantasy;padding-left: 10px;}
 span{padding-top: 20px;font-size: medium;font-family:fantasy;padding-left: 10px;}
+#butt{margin-left: 600px;margin-top: 50px;}
+#result{margin-left: 500px;margin-top: 20px;}
+#left_img{border: solid 3px blueviolet;padding: 5px;}
+#med_img{border: solid 3px rgb(226, 43, 144);padding: 5px;}
+#right_img{border: solid 3px rgb(211, 43, 226);padding: 5px;}
+#imageContainer{padding-top: 20px;margin-left: 50px;}

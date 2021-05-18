@@ -13,6 +13,7 @@ function BusmallImg(productName) {
     this.shownTimes = 0;
     this.clicks = 0;
     busmall.push(this);
+    // settingItems();
     productNameArray.push(this.productName);
 }
 
@@ -27,8 +28,22 @@ function generateImg() {
     return Math.floor(Math.random() * busmall.length);
 }
 
+function settingItems()
+{
+    let data = JSON.stringify(busmall);
+    // console.log(data);
+    localStorage.setItem('bus', data);
+    
+}
 
-
+function gettingItems() {
+    let stringobj= localStorage.getItem('bus');
+    let normalobj = JSON.parse(stringobj);
+    if (normalobj !== null) {
+        busmall = normalobj;
+    }
+    renderimg();
+}
 let LimgEL = document.getElementById('left_img');
 let MimgEL = document.getElementById('med_img');
 let RimgEL = document.getElementById('right_img');
@@ -42,14 +57,14 @@ function renderimg() {
     rightImgIndex = generateImg();
 
     while (leftImgIndex === midImgIndex || midImgIndex === rightImgIndex
-         || rightImgIndex === leftImgIndex || part.includes(leftImgIndex) 
-         || part.includes(midImgIndex) || part.includes(rightImgIndex)) {
+        || rightImgIndex === leftImgIndex || part.includes(leftImgIndex)
+        || part.includes(midImgIndex) || part.includes(rightImgIndex)) {
         leftImgIndex = generateImg();
         midImgIndex = generateImg();
         rightImgIndex = generateImg();
     }
     part[0] = leftImgIndex;
-    part[1] =  midImgIndex;
+    part[1] = midImgIndex;
     part[2] = rightImgIndex;
 
     LimgEL.setAttribute('src', busmall[leftImgIndex].imagePath);
@@ -64,7 +79,7 @@ function renderimg() {
     RimgEL.setAttribute('title', busmall[rightImgIndex].imagePath);
     busmall[rightImgIndex].shownTimes++;
     attemptsEL.textContent = attempts;
-    
+
 }
 renderimg();
 
@@ -92,7 +107,7 @@ function Clicks(event) {
         MimgEL.removeEventListener('click', Clicks);
         RimgEL.removeEventListener('click', Clicks);
 
-
+settingItems();
     }
 
 }
@@ -148,6 +163,7 @@ function result() {
     }
     chartRender();
 }
+gettingItems();
 
 
 
